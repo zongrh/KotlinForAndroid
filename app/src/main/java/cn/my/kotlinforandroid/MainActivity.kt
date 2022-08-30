@@ -2,25 +2,28 @@ package cn.my.kotlinforandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import cn.my.activity.AboutActivity
 import cn.my.kotlinforandroid.databinding.ActivityMainBinding
 import cn.my.mylibrary.base.BaseBindingActivity
+import cn.my.mylibrary.utils.LogUtil
+import cn.my.mylibrary.utils.ToastUtils
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
 
     override fun setupViews() {
         mBinding.apply {
             // Activity
             btnActivity.setOnClickListener {
-//                AboutActivity.launch(this@MainActivity)
+                LogUtil.d("btnActivity")
+                ToastUtils.showLong(this@MainActivity, "btnActivity")
+                AboutActivity.launch(this@MainActivity)
             }
 
             // Handler
             btnHandler.setOnClickListener {
 //                startActivity(HandlerActivity.newIntent(this@MainActivity))
+                ToastUtils.showLong(this@MainActivity, "Handler Toast")
             }
 
             // 事件分发

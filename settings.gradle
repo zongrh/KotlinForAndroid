@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "KotlinForAndroid"
 include ':app'
 include ':lib_base'
+include ':activity'
+include ':handler'
