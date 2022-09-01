@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import cn.my.activity.AboutActivity
+import cn.my.handler.HandlerActivity
+import cn.my.jetpack.JetpackActivity
 import cn.my.kotlinforandroid.databinding.ActivityMainBinding
 import cn.my.mylibrary.base.BaseBindingActivity
 import cn.my.mylibrary.utils.LogUtil
@@ -22,7 +24,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
 
             // Handler
             btnHandler.setOnClickListener {
-//                startActivity(HandlerActivity.newIntent(this@MainActivity))
+                startActivity(HandlerActivity.newIntent(this@MainActivity))
                 ToastUtils.showLong(this@MainActivity, "Handler Toast")
             }
 
@@ -46,7 +48,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
 
             // Kotlin & 协程
             btnKotlinJetpack.setOnClickListener {
-//                startActivity(JetpackActivity.newIntent(this@MainActivity))
+                startActivity(JetpackActivity.newIntent(this@MainActivity))
             }
 
             // EventBus

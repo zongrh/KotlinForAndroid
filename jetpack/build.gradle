@@ -1,49 +1,47 @@
 import com.btpj.dependencies.Versions
 
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
 if (isBuildApp.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
 android {
     compileSdkVersion Versions.compileSdkVersion
     buildToolsVersion Versions.buildToolsVersion
 
+
     defaultConfig {
         if (isBuildApp.toBoolean()) {
-            applicationId = "cn.my.activity"
+            applicationId "cn.my.jetpack"
         }
-        minSdkVersion Versions.minSdkVersion
-        targetSdkVersion Versions.targetSdkVersion
+        minSdk Versions.minSdkVersion
+        targetSdk Versions.targetSdkVersion
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled = false
-            proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-            )
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
-    buildFeatures {
-        dataBinding true
-    }
+
     sourceSets {
         main {
             if (isBuildApp.toBoolean()) {
@@ -53,10 +51,16 @@ android {
             }
         }
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
 }
 
 dependencies {
-//    implementation Deps.arouterApi
-//    kapt Deps.arouterCompiler
     implementation project(':lib_base')
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 }

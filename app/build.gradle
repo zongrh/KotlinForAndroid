@@ -49,5 +49,7 @@ dependencies {
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation project(':lib_base')
     implementation project(':activity')
+    implementation project(':handler')
+    implementation project(':jetpack')
 
 }
