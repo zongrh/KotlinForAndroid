@@ -25,8 +25,14 @@ abstract class BaseBindingActivity<B : ViewDataBinding>(private val contentViewR
         setContentView(contentViewResId)
         StatusBarUtil.setImmersionStatus(this)
         setupDataBinding()
+        initData()
         setupViews()
     }
+
+    /**
+     * 初始化数据相关
+     */
+    abstract fun initData()
 
     /** DataBinding相关初始化设置 */
     private fun setupDataBinding() {

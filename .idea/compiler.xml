@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="KotlinForAndroid.activity" target="11" />
+      <module name="KotlinForAndroid.android_ipc_client" target="11" />
+      <module name="KotlinForAndroid.android_ipc_server" target="11" />
+      <module name="KotlinForAndroid.app" target="11" />
+      <module name="KotlinForAndroid.buildSrc" target="11" />
+      <module name="KotlinForAndroid.buildSrc.main" target="11" />
+      <module name="KotlinForAndroid.buildSrc.test" target="11" />
+      <module name="KotlinForAndroid.handler" target="11" />
+      <module name="KotlinForAndroid.jetpack" target="11" />
+      <module name="KotlinForAndroid.kotlin_ipc_client" target="11" />
+      <module name="KotlinForAndroid.kotlin_ipc_server" target="11" />
+      <module name="KotlinForAndroid.lib_base" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

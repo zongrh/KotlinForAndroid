@@ -33,4 +33,8 @@ object Versions {
 
     const val eventbus = "3.2.0"
     const val retrofit = "2.9.0"
+
+    /**---------------utils----------*/
+    const val blankjUtil = "1.30.6"
+
 }

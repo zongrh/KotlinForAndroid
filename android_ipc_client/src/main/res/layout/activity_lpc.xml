@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_getBookList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取书籍列表" />
+
+        <Button
+            android:id="@+id/btn_addBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="添加书籍" />
+
+        <Button
+            android:id="@+id/btn_removeFirstBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="删除第一本书" />
+
+        <TextView
+            android:id="@+id/tv_return"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="downloadImage"
+            android:text="下载图片" />
+
+        <Button
+            android:id="@+id/btn_download_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="downloadImage"
+            android:text="下载多个图片" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,10 +1,8 @@
 package cn.my.kotlinforandroid
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Toast
 import cn.my.activity.AboutActivity
 import cn.my.handler.HandlerActivity
+import cn.my.jetpack.CoroutinesActivity
 import cn.my.jetpack.JetpackActivity
 import cn.my.kotlinforandroid.databinding.ActivityMainBinding
 import cn.my.mylibrary.base.BaseBindingActivity
@@ -12,6 +10,8 @@ import cn.my.mylibrary.utils.LogUtil
 import cn.my.mylibrary.utils.ToastUtils
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
+    override fun initData() {
+    }
 
     override fun setupViews() {
         mBinding.apply {
@@ -33,11 +33,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
 //                startActivity(MainViewsActivity.newIntent(this@MainActivity))
             }
 
-            // IPC通信
-            btnIpc.setOnClickListener {
-//                startActivity(IPCActivity.newIntent(this@MainActivity))
-            }
-
             // MVC、MVP、MVVM
             btnMvcMvpMvvm.setOnClickListener {
 //                startActivity(StructureActivity.newIntent(this@MainActivity) )
@@ -46,10 +41,16 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
                 //  ARouter.getInstance().build("/MvcMvpMvvm/mvc").navigation()
             }
 
-            // Kotlin & 协程
+            // Kotlin & 协程 & jetpack
             btnKotlinJetpack.setOnClickListener {
                 startActivity(JetpackActivity.newIntent(this@MainActivity))
             }
+
+            // android coroutines
+            btnCoroutines.setOnClickListener {
+                startActivity(CoroutinesActivity.newIntent(this@MainActivity))
+            }
+
 
             // EventBus
             btnEventBus.setOnClickListener {

@@ -18,8 +18,14 @@ class JetpackActivity : BaseActivity(R.layout.activity_jetpack) {
     }
 
     override fun setupViews() {
+
         findViewById<Button>(R.id.btn_coroutines).setOnClickListener {
             startActivity(CoroutinesActivity.newIntent(this))
         }
+
+        findViewById<Button>(R.id.btn_jetpack_lifecycle).setOnClickListener {
+            startActivity(JetpackLifecycleActivity.newIntent(this))
+        }
+
     }
 }

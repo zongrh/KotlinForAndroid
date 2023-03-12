@@ -21,6 +21,10 @@ class AboutActivity : BaseBindingActivity<ActivityAboutBinding>(R.layout.activit
         }
     }
 
+    override fun initData() {
+
+    }
+
     override fun setupViews() {
         mBinding.apply {
             btnOrientation.setOnClickListener {

@@ -29,4 +29,6 @@ object Deps {
 
     const val eventbus = "org.greenrobot:eventbus:${Versions.eventbus}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+
+    const val blankjUtils = "com.blankj:utilcodex:${Versions.blankjUtil}"
 }

@@ -29,6 +29,10 @@ class BActivity : BaseBindingActivity<ActivityBBinding>(R.layout.activity_b) {
         LogUtil.d("B onCreate")
     }
 
+    override fun initData() {
+
+    }
+
     override fun onStart() {
         super.onStart()
         LogUtil.d("B onStart")
