@@ -11,6 +11,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/activity" />
+            <option value="$PROJECT_DIR$/android_aidlpool_client" />
+            <option value="$PROJECT_DIR$/android_aidlpool_server" />
             <option value="$PROJECT_DIR$/android_ipc_client" />
             <option value="$PROJECT_DIR$/android_ipc_server" />
             <option value="$PROJECT_DIR$/app" />

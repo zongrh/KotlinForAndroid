@@ -27,7 +27,6 @@
                 <action android:name="cn.zong.android_ipc_server.action" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </service>
     </application>
 

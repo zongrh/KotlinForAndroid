@@ -10,9 +10,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 
-import java.net.URL;
-
-public class DownloadImagesActivity extends AppCompatActivity  implements MyIntentService.UpdateUI {
+public class DownloadImagesActivity extends AppCompatActivity  implements ImagesIntentService.UpdateUI {
     private static ImageView imageView;
     /**
      * 图片地址集合
@@ -50,12 +48,12 @@ public class DownloadImagesActivity extends AppCompatActivity  implements MyInte
         setContentView(R.layout.activity_download_images_service);
         imageView = (ImageView) findViewById(R.id.image);
 
-        Intent intent = new Intent(this, MyIntentService.class);
+        Intent intent = new Intent(this, ImagesIntentService.class);
         for (int i = 0; i < 7; i++) {//循环启动任务
-            intent.putExtra(MyIntentService.DOWNLOAD_URL, url[i]);
-            intent.putExtra(MyIntentService.INDEX_FLAG, i);
+            intent.putExtra(ImagesIntentService.DOWNLOAD_URL, url[i]);
+            intent.putExtra(ImagesIntentService.INDEX_FLAG, i);
             startService(intent);
         }
-        MyIntentService.setUpdateUI(this);
+        ImagesIntentService.setUpdateUI(this);
     }
 }

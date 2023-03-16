@@ -82,80 +82,80 @@ class CoroutinesActivity :
 
         // 调度器切换
         dispatchersTest()
-        test2()
+//        test2()
     }
-    private suspend fun test() {
-        val flow = flow {
-            // 网络连接
-            connectToNet()
-            try {
-                while (true) {
-                    // 获取数据并发射
-                    emit(getDataFromNet())
-                }
-            } finally {
-                // 断开连接
-                disconnectFromNet()
-            }
-        }
-
-        // 不使用shareIn方法
-        // 10次网络连接
-        for (i in 0..10)
-            launch {
-                flow.collect {
-                    Log.d("liduo", "test: $it")
-                }
-            }
-
-        // 使用shareIn方法
-        val sharedFlow = flow.shareIn(GlobalScope, SharingStarted.Eagerly, 1)
-
-        // 1次网络连接
-        for (i in 0..10)
-            launch {
-                sharedFlow.collect {
-                    Log.d("liduo", "test1: $it")
-                }
-            }
-    }
-
-    suspend fun testBuffer3() {
-        var flow = flow {
-            (1..3).forEach {
-                delay(1000)
-                println("emit $it")
-                emit(it)
-            }
-        }.flowOn(Dispatchers.IO)
-
-        var time = measureTimeMillis {
-            flow.collect {
-                delay(2000)
-                println("collect:$it")
-            }
-        }
-        println("use time:${time} ms")
-    }
-
-    fun test2() {
-        runBlocking {
-            //构造热流
-            val flow = MutableSharedFlow<String>()
-
-            //开启协程
-            GlobalScope.launch {
-                //接收数据(消费者)
-                flow.collect {
-                    println("collect: $it")
-                }
-            }
-
-            //发送数据(生产者)
-            delay(200)//保证消费者已经注册上
-            flow.emit("hello world")
-        }
-    }
+//    private suspend fun test() {
+//        val flow = flow {
+//            // 网络连接
+//            connectToNet()
+//            try {
+//                while (true) {
+//                    // 获取数据并发射
+//                    emit(getDataFromNet())
+//                }
+//            } finally {
+//                // 断开连接
+//                disconnectFromNet()
+//            }
+//        }
+//
+//        // 不使用shareIn方法
+//        // 10次网络连接
+//        for (i in 0..10)
+//            launch {
+//                flow.collect {
+//                    Log.d("liduo", "test: $it")
+//                }
+//            }
+//
+//        // 使用shareIn方法
+//        val sharedFlow = flow.shareIn(GlobalScope, SharingStarted.Eagerly, 1)
+//
+//        // 1次网络连接
+//        for (i in 0..10)
+//            launch {
+//                sharedFlow.collect {
+//                    Log.d("liduo", "test1: $it")
+//                }
+//            }
+//    }
+//
+//    suspend fun testBuffer3() {
+//        var flow = flow {
+//            (1..3).forEach {
+//                delay(1000)
+//                println("emit $it")
+//                emit(it)
+//            }
+//        }.flowOn(Dispatchers.IO)
+//
+//        var time = measureTimeMillis {
+//            flow.collect {
+//                delay(2000)
+//                println("collect:$it")
+//            }
+//        }
+//        println("use time:${time} ms")
+//    }
+//
+//    fun test2() {
+//        runBlocking {
+//            //构造热流
+//            val flow = MutableSharedFlow<String>()
+//
+//            //开启协程
+//            GlobalScope.launch {
+//                //接收数据(消费者)
+//                flow.collect {
+//                    println("collect: $it")
+//                }
+//            }
+//
+//            //发送数据(生产者)
+//            delay(200)//保证消费者已经注册上
+//            flow.emit("hello world")
+//        }
+//    }
 
     fun dispatchersTest() {
         //创建一个在主线程执行的协程作用域

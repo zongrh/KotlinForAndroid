@@ -20,7 +20,7 @@ import java.net.URL;
  * Description:
  * History:
  */
-public class MyIntentService extends IntentService {
+public class ImagesIntentService extends IntentService {
     public static final String DOWNLOAD_URL="download_url";
     public static final String INDEX_FLAG="index_flag";
     public static UpdateUI updateUI;
@@ -36,7 +36,7 @@ public class MyIntentService extends IntentService {
      *在构造函数中传入线程名字
      *
      */
-    public MyIntentService(){
+    public ImagesIntentService(){
         super("MyIntentService");
     }
 

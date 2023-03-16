@@ -17,6 +17,7 @@ class HandlerActivity : BaseActivity(R.layout.activity_handler) {
     //非空属性在定义的时候初始化，kotlin提供了一种可以延迟初始化的方案，
     //使用 lateinit 关键字描述属性：
     private lateinit var myLooper: Looper
+    private lateinit var mHandler: Handler
 
     //-----伴生对象
     //类内部的对象声明可以用 companion 关键字标记，这样它就与外部类关联在一起，
@@ -42,6 +43,9 @@ class HandlerActivity : BaseActivity(R.layout.activity_handler) {
 
         findViewById<Button>(R.id.btn_quit).setOnClickListener {
             myLooper.quit()
+        }
+        findViewById<Button>(R.id.btn_new_thread_handler).setOnClickListener {
+            MyThread3().start()
         }
     }
 
@@ -87,6 +91,28 @@ class HandlerActivity : BaseActivity(R.layout.activity_handler) {
     }
 
     inner class MyThread2 : Thread() {
+
+        @RequiresApi(Build.VERSION_CODES.M)
+        override fun run() {
+            super.run()
+            Looper.prepare()
+            //----- NULL检查机制
+            //Kotlin的空安全设计对于声明可为空的参数，在使用时要进行空判断处理，有两种处理方式：
+            //1.字段后加!! 像java一样抛出空异常
+            //2.字段后加? 可不做处理返回值为null 或者配合 ?: 做空判断处理
+            myLooper = Looper.myLooper()!!
+            myLooper.queue.addIdleHandler {
+                return@addIdleHandler true
+            }
+            val threadHandler = MyHandler(WeakReference(this@HandlerActivity), myLooper)
+            val obtainMessage = threadHandler.obtainMessage(3, "子线程中的handler向子线程的Looper发消息")
+            threadHandler.sendMessage(obtainMessage)
+            Looper.loop()
+            LogUtil.d("MyThread2执行完毕")
+        }
+    }
+
+    inner class MyThread3 : Thread() {
 
         @RequiresApi(Build.VERSION_CODES.M)
         override fun run() {

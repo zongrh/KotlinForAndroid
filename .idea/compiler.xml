@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="KotlinForAndroid.activity" target="11" />
+      <module name="KotlinForAndroid.android_aidlpool_client" target="11" />
+      <module name="KotlinForAndroid.android_aidlpool_server" target="11" />
       <module name="KotlinForAndroid.android_ipc_client" target="11" />
       <module name="KotlinForAndroid.android_ipc_server" target="11" />
       <module name="KotlinForAndroid.app" target="11" />

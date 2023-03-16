@@ -1,6 +1,5 @@
 package com.example.java_or_kotlin_library;
 
-import jdk.internal.jline.internal.Log;
 
 /**
  * FileName: AccountingSync
