@@ -8,6 +8,8 @@
       <module name="KotlinForAndroid.android_ipc_client" target="11" />
       <module name="KotlinForAndroid.android_ipc_server" target="11" />
       <module name="KotlinForAndroid.app" target="11" />
+      <module name="KotlinForAndroid.app_aidlpool2_client" target="11" />
+      <module name="KotlinForAndroid.app_aidlpool2_server" target="11" />
       <module name="KotlinForAndroid.buildSrc" target="11" />
       <module name="KotlinForAndroid.buildSrc.main" target="11" />
       <module name="KotlinForAndroid.buildSrc.test" target="11" />
