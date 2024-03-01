@@ -18,6 +18,13 @@
       <module name="KotlinForAndroid.kotlin_ipc_client" target="11" />
       <module name="KotlinForAndroid.kotlin_ipc_server" target="11" />
       <module name="KotlinForAndroid.lib_base" target="11" />
+      <module name="KotlinForAndroid.lib_base_mvvm" target="11" />
+      <module name="KotlinForAndroid.music_app" target="11" />
+      <module name="KotlinForAndroid.mvvm" target="11" />
+      <module name="KotlinForAndroid.mvvm_lib_base" target="11" />
+      <module name="KotlinForAndroid.mvvm_wanAndroid" target="11" />
+      <module name="KotlinForAndroid.mymvvm" target="11" />
+      <module name="KotlinForAndroid.myokhttp_write" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

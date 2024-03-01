@@ -1,4 +1,4 @@
-package com.btpj.lib_base.widgets
+package cn.my.mylibrary.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context

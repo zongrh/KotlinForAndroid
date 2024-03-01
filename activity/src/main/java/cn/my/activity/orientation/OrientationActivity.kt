@@ -3,14 +3,11 @@ package cn.my.activity.orientation
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.widget.TextView
-import androidx.core.view.marginTop
 import cn.my.activity.R
 import cn.my.mylibrary.base.BaseActivity
 import cn.my.mylibrary.utils.LogUtil
-import com.btpj.lib_base.widgets.TitleLayout
+import cn.my.mylibrary.widgets.TitleLayout
 
 /**
  * Manifests中设Activity置android:configChanges="orientation"查看生命周期的变化

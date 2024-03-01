@@ -12,7 +12,7 @@
         android:orientation="vertical"
         tools:context=".AboutActivity">
 
-        <com.btpj.lib_base.widgets.TitleLayout
+        <cn.my.mylibrary.widgets.FlowLayout
             android:id="@+id/titleLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

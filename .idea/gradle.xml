@@ -4,9 +4,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -25,8 +24,13 @@
             <option value="$PROJECT_DIR$/kotlin_ipc_server" />
             <option value="$PROJECT_DIR$/kotlin_java_library" />
             <option value="$PROJECT_DIR$/lib_base" />
+            <option value="$PROJECT_DIR$/mvvm" />
+            <option value="$PROJECT_DIR$/mvvm_lib_base" />
+            <option value="$PROJECT_DIR$/mvvm_wanAndroid" />
+            <option value="$PROJECT_DIR$/myokhttp_write" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

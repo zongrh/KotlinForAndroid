@@ -3,8 +3,11 @@ package cn.zong.android_ipc_server;
 import android.app.Service;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Binder;
 import android.os.IBinder;
 import android.os.Parcel;
+import android.os.Process;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Toast;
@@ -23,17 +26,36 @@ public class AIDLService extends Service {
 
     private final String TAG = "MyAIDLService";
 
-    private List<Book> bookList;
+    public List<Book> bookList = new ArrayList<>();
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     public AIDLService() {
     }
 
+    private boolean serverRunning = false;
+    private int count = 0;
+
     @Override
     public void onCreate() {
-        super.onCreate();
-        bookList = new ArrayList<>();
-        initData();
+        // service 创建的时候，开一个线程去向注册了的客户端发送消息
+        serverRunning = true;
         Log.e(TAG, "AIDLService  onCreate ");
+        super.onCreate();
+        initData();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "callback test server destroy");
+        serverRunning = false;
     }
 
     private void initData() {
@@ -62,7 +84,7 @@ public class AIDLService extends Service {
 
         @Override
         public void addBookInOut(Book book) throws RemoteException {
-            Log.e(TAG, "接收到了一个book : "+book.toString());
+            Log.e(TAG, "接收到了一个book : " + book.toString());
 
             if (book != null) {
                 bookList.add(book);
@@ -79,11 +101,50 @@ public class AIDLService extends Service {
                 bookList.remove(0);
             }
         }
+
+        @Override
+        public void register(ICallback callback) throws RemoteException {
+            Log.d(TAG, "register callback from pid=" + Binder.getCallingPid());
+            clients.register(callback);
+        }
+
+        @Override
+        public void unregister(ICallback callback) throws RemoteException {
+            Log.d(TAG, "unregister callback from pid=" + Binder.getCallingPid());
+            clients.unregister(callback);
+        }
+
+        @Override
+        public void callServer() throws RemoteException {
+            Log.d(TAG, "我是服务端，我收到客户端的消息是:  " + "我服务端所在的进程是：  pid=" + Binder.getCallingPid());
+              noteClients("我是服务端 ");
+        }
+
+        /**
+         * 这里就是 RemoteCallbackList 的关键用法了
+         * beginBroadcast 和 finishBroadcast 需要配套使用
+         * beginBroadcast 会返回注册了的客户端数量，然后开一个循环依次取出客户端注册的回调，并调用回调内的
+         * onReceived 函数。这个函数需要客户端实现 ICallbackTestCallback.Stub 之后，注册给服务端
+         */
+        private void noteClients(String msg) {
+            int cb = clients.beginBroadcast();
+            for (int i = 0; i < cb; i++) {
+                try {
+                    clients.getBroadcastItem(i).onReceived(msg);
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            clients.finishBroadcast();
+        }
     };
 
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
     }
+
+    private final RemoteCallbackList<ICallback> clients = new RemoteCallbackList<>();
+
 
 }

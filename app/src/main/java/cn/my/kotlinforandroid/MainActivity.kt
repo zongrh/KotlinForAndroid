@@ -5,6 +5,7 @@ import cn.my.handler.HandlerActivity
 import cn.my.jetpack.CoroutinesActivity
 import cn.my.jetpack.JetpackActivity
 import cn.my.kotlinforandroid.databinding.ActivityMainBinding
+import cn.my.mvvm.MvvmActivity
 import cn.my.mylibrary.base.BaseBindingActivity
 import cn.my.mylibrary.utils.LogUtil
 import cn.my.mylibrary.utils.ToastUtils
@@ -35,7 +36,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
 
             // MVC、MVP、MVVM
             btnMvcMvpMvvm.setOnClickListener {
-//                startActivity(StructureActivity.newIntent(this@MainActivity) )
+                startActivity(MvvmActivity.newIntent(this@MainActivity) )
 
                 // Arouter（此处暂时不兼容AndroidX）
                 //  ARouter.getInstance().build("/MvcMvpMvvm/mvc").navigation()

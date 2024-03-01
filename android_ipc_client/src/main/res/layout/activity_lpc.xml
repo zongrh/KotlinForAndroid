@@ -43,5 +43,30 @@
             android:layout_height="wrap_content"
             android:onClick="downloadImage"
             android:text="下载多个图片" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="register"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_unregister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="unregister"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_call_server"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="客户端发送消息给服务端"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

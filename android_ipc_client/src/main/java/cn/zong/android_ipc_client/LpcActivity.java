@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import cn.zong.android_ipc_server.Book;
 import cn.zong.android_ipc_server.BookController;
+import cn.zong.android_ipc_server.ICallback;
 
 public class LpcActivity extends AppCompatActivity {
     private final String TAG = "MyAIDLService";
@@ -39,6 +41,7 @@ public class LpcActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             bookController = BookController.Stub.asInterface(service);
             connected = true;
+            registerCallback();
             Log.e(TAG, "onServiceConnected: " + connected);
             try {
                 Log.e(TAG, "getBookList.toString: " + bookController.getBookList().toString());
@@ -143,7 +146,67 @@ public class LpcActivity extends AppCompatActivity {
                 case R.id.btn_download_images:
                     startActivity(new Intent(LpcActivity.this, DownloadImagesActivity.class));
                     break;
+                case R.id.btn_register:
+                    registerCallback();
+                    break;
+                case R.id.btn_unregister:
+                    unregisterCallback();
+                    break;
+                case R.id.btn_call_server:
+                    indexClientSend++;
+                    callServer("我是客户端发送给服务端的第"+indexClientSend+"条消息");
+                    break;
             }
+        }
+    };
+    private int indexClientSend = 0;
+    private void callServer(String msg) {
+        if (bookController != null) {
+            try {
+                Log.e(TAG, "callServer  msg:" + msg);
+                bookController.callServer();
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            Log.e(TAG, " null remoteServer");
+        }
+    }
+
+    public void registerCallback() {
+        if (bookController != null) {
+            try {
+                bookController.register(callback);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.e(TAG, " null remoteServer");
+        }
+    }
+
+    public void unregisterCallback() {
+        if (bookController != null) {
+            try {
+                bookController.unregister(callback);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            Log.e(TAG, " null remoteServer");
+        }
+    }
+
+    private ICallback callback = new ICallback.Stub() {
+        @Override
+        public void onReceived(String msg) throws RemoteException {
+            Log.d(TAG, "received msg: "  + " . from server pid=" + Binder.getCallingPid());
+            mTv_show_return.post(new Runnable() {
+                @Override
+                public void run() {
+                    mTv_show_return.setText("服务端回调数据： "+indexClientSend);
+                }
+            });
         }
     };
 
@@ -157,12 +220,15 @@ public class LpcActivity extends AppCompatActivity {
         findViewById(R.id.btn_addBook).setOnClickListener(mOnClickListener);
         findViewById(R.id.btn_removeFirstBook).setOnClickListener(mOnClickListener);
         findViewById(R.id.btn_download_images).setOnClickListener(mOnClickListener);
+        findViewById(R.id.btn_register).setOnClickListener(mOnClickListener);
+        findViewById(R.id.btn_unregister).setOnClickListener(mOnClickListener);
         mTv_show_return = findViewById(R.id.tv_return);
         bindService();
     }
 
     /**
      * 下载一张图片 看日志
+     *
      * @param view
      */
     public void downloadImage(View view) {
@@ -183,6 +249,22 @@ public class LpcActivity extends AppCompatActivity {
         if (connected) {
             unbindService(mServiceConnection);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        if (connected) {
+            registerCallback();
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (connected) {
+            unregisterCallback();
+        }
+        super.onPause();
     }
 
     private void logBookString() {

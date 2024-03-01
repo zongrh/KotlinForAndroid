@@ -4,13 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.*
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import cn.my.mylibrary.base.BaseActivity
 import cn.my.mylibrary.utils.LogUtil
-import com.btpj.lib_base.widgets.TitleLayout
+import cn.my.mylibrary.widgets.TitleLayout
 import java.lang.ref.WeakReference
 
 class HandlerActivity : BaseActivity(R.layout.activity_handler) {
@@ -76,6 +75,8 @@ class HandlerActivity : BaseActivity(R.layout.activity_handler) {
                 what = 1
                 obj = "主线程中的Handler向主线程中的looper(即MainLooper) 发消息"
             }
+            val message2=mHandler.obtainMessage()
+
             myHandler.sendMessage(message)
         }.start()
     }

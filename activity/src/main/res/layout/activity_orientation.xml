@@ -8,7 +8,7 @@
     tools:context=".orientation.OrientationActivity">
 
 
-    <com.btpj.lib_base.widgets.TitleLayout
+    <cn.my.mvvm.widgets.TitleLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

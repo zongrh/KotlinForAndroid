@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven{  url="https://maven.aliyun.com/repository/public/"}
     }
 }
 rootProject.name = "KotlinForAndroid"
@@ -27,3 +29,7 @@ include ':android_aidlpool_server'
 include ':android_aidlpool_client'
 include ':app_aidlpool2_server'
 include ':app_aidlpool2_client'
+include ':mvvm'
+include ':mvvm_lib_base'
+include ':mvvm_wanAndroid'
+include ':myokhttp_write'

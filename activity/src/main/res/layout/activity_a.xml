@@ -14,7 +14,7 @@
         android:orientation="vertical"
         tools:context=".launch.AActivity">
 
-        <com.btpj.lib_base.widgets.TitleLayout
+        <cn.my.mvvm.widgets.TitleLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:titleText="页面A" />
