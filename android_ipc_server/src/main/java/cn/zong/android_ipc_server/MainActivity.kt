@@ -24,22 +24,8 @@ class MainActivity : AppCompatActivity() {
             tv_return.text = "AIDLService 是否存活：$running"
             Log.e("MyAIDLService", "AIDLService 是否存活：$running")
         }
-        runHelperService()
     }
 
-    private fun runHelperService(){
-        val am:ActivityManager= getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val cn= ComponentName("cn.zong.android_ipc_server","AIDLService")
-        val cnr = am.getRunningServiceControlPanel(cn)
-        if (cnr == null) {
-            Log.e("MyAIDLService", "AIDLService 是否存活：cnr == null")
-            val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        } else {
-            Log.e("MyAIDLService", "AIDLService 是否存活：cnr != null")
-        }
-    }
 
     fun isRunning(c: Context, serviceName: String): Boolean {
         val myAM: ActivityManager = c.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
